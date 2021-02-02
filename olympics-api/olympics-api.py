@@ -9,10 +9,10 @@ import psycopg2
 app = flask.Flask(__name__)
 
 def establish_database_connection():
-  
-    from config import password
-    from config import database
-    from config import user
+
+    database = 'olympics'
+    user = ''
+    password = ''
     
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
@@ -46,12 +46,32 @@ def get_games():
     connection.close()
         
     return json.dumps(games_list)
+
+@app.route('/nocs')
+def get_nocs():
+    #make connection
+    connection = establish_database_connection()
+    cursor = connection.cursor()
+
+    query = "SELECT abbre, name FROM nocs"
+
+    try:
+        cursor.execute(query)
+    except Exception as e:
+        print (e)
+        exit()
+
+    noc_list = []
+    for noc in cursor:
+        abbreviation = noc[0]
+        country = noc[1]
+        noc_list.append({'noc':abbreviation, 'country':country})
     
+    connection.close()
+
+    return json.dumps(noc_list)
 
 def main():
-
-    #connection = establish_database_connection()
-    #cursor = connection.cursor()
     
     parser = argparse.ArgumentParser('An Olympics Flask application/API')
     parser.add_argument('host', help='the host on which this application is running')
@@ -59,8 +79,6 @@ def main():
     args = parser.parse_args()
     
     app.run(host=args.host, port=args.port, debug=True)
-    
-    #connection.close()
     
 if __name__ == "__main__":
     main()

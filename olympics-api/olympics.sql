@@ -18,7 +18,6 @@ CREATE TABLE events(
     sports text
 );
 
-
 CREATE TABLE athletes_games (
     id INT,
     athletes_id INT,
@@ -34,8 +33,15 @@ CREATE TABLE athletes_total(
     medal text
 );
 
+CREATE TABLE nocs(
+    abbre TEXT,
+    name TEXT,
+    notes TEXT
+);
+
 \copy athletes from 'athletes.csv' DELIMITER ',' CSV NULL AS 'NA' HEADER;
 \copy games from 'games.csv' DELIMITER ',' CSV NULL AS 'NA' HEADER;
 \copy events from 'events.csv' DELIMITER ',' CSV NULL AS 'NA' HEADER;
 \copy athletes_games from 'athletes_games.csv' DELIMITER ',' CSV NULL AS 'NA' HEADER;
 \copy athletes_total from 'athletes_total.csv' DELIMITER ',' CSV NULL AS 'NA' HEADER;
+\copy nocs from 'noc_regions.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER; 
