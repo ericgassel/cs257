@@ -8,9 +8,8 @@ import psycopg2
 
 app = flask.Flask(__name__)
 
-
 def establish_database_connection():
-    
+
     from config import database
     from config import user
     from config import password
