@@ -10,14 +10,12 @@ app = flask.Flask(__name__)
 
 def establish_database_connection():
 
-    #from config import database
-    #from config import user
-    #from config import password
-
-    
+    from config import database
+    from config import user
+    from config import password
 
     try:
-        connection = psycopg2.connect(database='olympics', user='', password='')
+        connection = psycopg2.connect(database=database, user=user, password=password)
     except Exception as e:
         print(e)
         exit()
@@ -55,7 +53,7 @@ def get_nocs():
     connection = establish_database_connection()
     cursor = connection.cursor()
 
-    query = "SELECT abbre, name FROM nocs"
+    query = 'SELECT abbre, name FROM nocs'
 
     try:
         cursor.execute(query)
@@ -84,7 +82,7 @@ def get_medals_winner_list(games_id):
                FROM athletes, games, events, athletes_games, athletes_total, nocs 
                WHERE athletes_games.athletes_id = athletes_total.athletes_games_id 
                AND athletes.id = athletes_games.athletes_id 
-               AND events.id = athletes_total.events;'''
+               AND events.id = athletes_total.events_id'''
 
     try:
         cursor.execute(query)
