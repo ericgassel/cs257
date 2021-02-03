@@ -9,13 +9,10 @@ import psycopg2
 app = flask.Flask(__name__)
 
 def establish_database_connection():
-<<<<<<< HEAD
 
     database = 'olympics'
     user = ''
     password = ''
-=======
->>>>>>> 499d5a04c51c94c8f8f4b64146539d9b00e3416e
     
     try:
         connection = psycopg2.connect(database='olympics', user='', password='')
@@ -56,11 +53,7 @@ def get_nocs():
     connection = establish_database_connection()
     cursor = connection.cursor()
 
-<<<<<<< HEAD
     query = "SELECT abbre, name FROM nocs"
-=======
-    query = "SELECT NOC, team FROM athletes_games"
->>>>>>> 499d5a04c51c94c8f8f4b64146539d9b00e3416e
 
     try:
         cursor.execute(query)
@@ -70,14 +63,8 @@ def get_nocs():
 
     noc_list = []
     for noc in cursor:
-<<<<<<< HEAD
         abbreviation = noc[0]
         country = noc[1]
-=======
-        
-        abbreviation = noc[len(noc)-1]
-        country = noc[len(noc)-2]
->>>>>>> 499d5a04c51c94c8f8f4b64146539d9b00e3416e
         noc_list.append({'noc':abbreviation, 'country':country})
     
     connection.close()
