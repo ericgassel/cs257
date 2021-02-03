@@ -15,7 +15,7 @@ def establish_database_connection():
     from config import password
 
     try:
-        connection = psycopg2.connect(database=database, user=user, password=password)
+        connection = psycopg2.connect(database=database, user='', password='')
     except Exception as e:
         print(e)
         exit()
@@ -77,12 +77,14 @@ def get_medals_winner_list(games_id):
     connection = establish_database_connection()
     cursor = connection.cursor()
 
-    query = '''SELECT athletes.id, athletes.names, athletes.sex, events.sports, 
+    query = f'''SELECT athletes.id, athletes.names, athletes.sex, events.sports, 
                events.events, athletes_total.medal, games.id, athletes_games.NOC 
                FROM athletes, games, events, athletes_games, athletes_total, nocs 
                WHERE athletes_games.athletes_id = athletes_total.athletes_games_id 
                AND athletes.id = athletes_games.athletes_id 
-               AND events.id = athletes_total.events_id'''
+               AND events.id = athletes_total.events_id
+               AND games.id = {games_id}
+               AND (athletes_total.medal = 'Gold' OR athletes_total.medal = 'Silver' OR athletes_total.medal = 'Bronze')'''
 
     try:
         cursor.execute(query)
@@ -102,11 +104,11 @@ def get_medals_winner_list(games_id):
         medal = game[5]
         searched_game = game[6]
         noc = game[7]
-        if searched_game == games_id:
-            games_list.append({'athlete_id':athlete_id, 'athlete_name':athlete_name, 'sex': sex, 'sport':sport, 'event':events, 'medal':medal})
+
+        games_list.append({'athlete_id':athlete_id, 'athlete_name':athlete_name, 'sex': sex, 'sport':sport, 'event':events, 'medal':medal})
         
-        
-        connection.close()
+    
+    #connection.close()
         
     return json.dumps(games_list)
     
