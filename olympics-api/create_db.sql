@@ -29,7 +29,7 @@ CREATE TABLE athletes_games (
 CREATE TABLE athletes_total(
     id INT,
     athletes_games_id INT,
-    events INT,
+    events_id INT,
     medal text
 );
 
