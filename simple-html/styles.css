@@ -1,0 +1,51 @@
+/* Eric Gassel - styles.css */
+
+body {
+    margin: 15px;
+}
+
+#page{
+    /*height based off research*/
+    height: 575px;
+    width: 100%;
+}
+
+#header {
+    height: 15%;
+    width: 100%;
+    background-color: skyblue;
+}
+
+#left_vert_bar{
+    height: 85%;
+    width: 12%;
+    float: left;
+    background-color: lavender;
+}
+
+#right_body{
+    height: 85%;
+    width: 88%;
+    float: right;
+    background-color: lavenderblush;
+}
+
+ul.vertical-navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+
+ul.vertical-navbar li a {
+    display: block;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.vertical-navbar li a:hover {
+    background-color: #555;
+    color: white;
+}
