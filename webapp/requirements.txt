@@ -1,1 +1,34 @@
 Eric Gassel & Sam Gloss
+
+Basketball dataset: This dataset contains individual player stats from all games from 2010 to the 2019 season. The individual player stats include basic player stats such as PTS, REB, STL, FGA, TEAM, Opponent, minutes, and more. One limitation said by the creator is that the minutes may not be entirely accurate. https://www.kaggle.com/kenhuang41/nba-basic-game-data-by-player Click on games_2010s.csv
+
+Three options, sort by general player data, team data, or individual player data
+	General Player Data can be sorted by:
+					Year (the season or seasons chosen)
+					Position(PG, SG, SF, PF, C)
+					Conference(East, West, Both)
+					Team (i.e. Hawks, Celtics, etc.)
+	Team Data can be sorted by: 
+					Year (the season or seasons chosen)
+					Opponents (team statistics versus certain teams)
+					Results (Win, Loss, Large Margin of Victory/Defeat, etc.)
+	Individual Player Data can be sorted by:
+					Player Name (the player’s name i.e. LeBron James)
+					Year(the season or seasons chosen)
+					Team(i.e Hawks, Celtics, etc.)
+
+User Stories: 
+
+Story: I want to find out how many points LeBron James averages against the Suns from 2010-2015
+
+Implementation: Sort by individual player data by name and look up LeBron James. Then I sort that by year of 2010-2015. Then I select the linking table for results against the Phoenix Suns, and viola, I have LeBron James’s career games from 2010-2015 against the Suns and the overall average. 
+--
+Story: A sports bettor wants to find the Bulls’ record against the Celtics since 2017 and see the general game data associated with each game
+
+Implementation: (horizontal/vertical scroll bars still in discussion) The user can click on team data, then on a left-hand vertical scroll bar click the Chicago Bulls. Then from a top of the screen horizontal bar, the user can sort by opponent (Celtics) and years (2017-2020)
+--
+Story: I want to find out who scored the most points per game in 2016. 
+
+Implementation: Sort by general player data. Then choose the 2016 season. Then sort the points per game column. 
+
+
