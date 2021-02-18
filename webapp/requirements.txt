@@ -17,6 +17,8 @@ Three options, sort by general player data, team data, or individual player data
 					Year(the season or seasons chosen)
 					Team(i.e Hawks, Celtics, etc.)
 
+*All Player Data can be sorted by all players or qualifying players
+
 User Stories: 
 
 Story: I want to find out how many points LeBron James averages against the Suns from 2010-2015
