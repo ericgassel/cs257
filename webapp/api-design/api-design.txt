@@ -1,1 +1,31 @@
-#By Eric Gassel and Sam Gloss
+Eric Gassel and Sam Gloss
+
+REQUEST: /team?{season}
+
+RESPONSE: returns several JSON lists of top 5 teams in PPG, PAPG, Record, Point Differential, RPG, APG
+
+REQUEST: /team/{season}/full_list={category}
+
+RESPONSE: returns a JSON list of an ordered ranking of all 30 teams in the selected category
+
+REQUEST: /team/{season}/{team_name}/{opponent}
+
+RESPONSE: several JSON lists, including the specified team’s roster, wins and losses, schedule (list of each of the games), general team stats with rankings (ppg, fg%, bpg, apg, etc). If opponent is specified, it will limit the data shown to stats vs that opponent
+
+REQUEST: /player?{season}/{player_name}?[opponent]
+
+RESPONSE: returns a JSON list of player’s statistics over their career or the specified season either against the whole NBA or against a specified opponent. 
+
+REQUEST: /player?{season}
+
+RESPONSE: returns several JSON lists of top 5 players in PPG, PAPG, Record, Point Differential, RPG, APG
+
+REQUEST: /player/{season}/full_list={category}
+
+RESPONSE: returns a JSON list of an ordered ranking of all NBA players in the selected category
+
+
+REQUEST: /game/game_id={game_id}
+
+RESPONSE: returns a JSON of all the statistics from the selected game.
+
