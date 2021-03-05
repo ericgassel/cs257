@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
-    <link rel="stylesheet" type="text/css" href="./static/webapp.css" />
+    <link rel="stylesheet" type="text/css" href="../static/webapp.css" />
     <script src="./static/webapp.js"></script>
     <title>NBA Stat Leaders</title>
 </head>
@@ -10,60 +10,66 @@
 <body>
     <div class = "page">
         <div id = "header">
-            <h3>NBA Stat Leaders</h3>
+            <a id="title">NBA Stat Leaders</b></a>
+
+            <a>
+                <form id = "search_bar">
+                    <br> <input type="text" onkeyup="search_player()" name="player_name" placeholder="Search here...">
+                </form>
+            </a>
+        
         </div>
+        
+   
 
         <div id = "team_scroll_bar">
-            <ul id = "vertical-navbar">
-            </ul>
+            If you're reading this, then something went wrong.
         </div>
 
-        <div id = "horizontal-navbar">
-            <ul id = "horizontal-navbar2">
-                <li><button id="players_button">PLAYERS</button></li>
-                <li><button id="teams_button">TEAMS</button></li>
-                <li><button id="games_button">GAMES</button></li>
-            </ul>
+        <div class = "horizontal-navbar">
+            
+            <button id="players_button" class="horz-button">Players</button>
+            <button id="teams_button" class="horz-button">Teams</button>
+            <button id="games_button" class="horz-button">Games</button>
+        
         </div>
 
         <div id = "content">
-            <div id = "mini-header-left">
-                <h4>Points Per Game</h4>
+            
+            <div class="mini-header">
+                Points Per Game
             </div>
-            <div id = "mini-header-right">
-                <h4>Assits Per Game</h4>
+            <div class="mini-header">
+                Assists Per Game
             </div>
-            <div id = "ppg-content">
+            <div class="stat-content" id = "ppg-content">
                 <ul id = "ppg-list">
                 </ul>
             </div>
-            <div id = "ast-content">
+            <div class="stat-content" id = "ast-content">
                 <ul id = "ast-list">
                 </ul>
             </div>
-            <div id = "mini-header-left">
-                <h4>Rebounds Per Game</h4>
+            <div class="mini-header">
+                Rebounds Per Game
             </div>
-            <div id = "mini-header-right">
-                <h4>Blocks Per Game</h4>
+            <div class="mini-header">
+                Blocks Per Game
             </div>
-            <div id = "reb-content">
-                <p>Hello, Jeff. The endpoint that Sam and I have coded in is the teams button above.</p>
+            <div class="stat-content" id = "reb-content">
+                Still a work in progress. Having database problems. The games button will have duplicates and some incorrect dates. These ugly colors will not be present for the final draft.
             </div>
-            <div id = "blk-content">
-                <p>hi</p>
+            <div class="stat-content" id = "blk-content">
             </div>
-            <div id = "mini-header-left">
-                <h4>Steals Per Game</h4>
+            <div class="mini-header">
+                Steals Per Game
             </div>
-            <div id = "mini-header-right">
-                <h4>Field Goal Percentage</h4>
+            <div class="mini-header">
+                Field Goal Percentage
             </div>
-            <div id = "stl-content">
-                <p>hi</p>
+            <div class="stat-content" id = "stl-content">
             </div>
-            <div id = "fgpct-content">
-                <p>hi</p>
+            <div class="stat-content" id = "fgpct-content">
             </div>
         </div>
     </div>

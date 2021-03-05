@@ -28,8 +28,14 @@ def shared_header_catchall(path):
     return flask.render_template(path)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser('A tiny Flask application, including API')
+    parser = argparse.ArgumentParser('NBA Data application, including API')
     parser.add_argument('host', help='the host on which this application is running')
     parser.add_argument('port', type=int, help='the port on which this application is listening')
     arguments = parser.parse_args()
     app.run(host=arguments.host, port=arguments.port, debug=True)
+
+
+
+@app.route('/api/help')
+def return_help_screen():
+    return flask.render_templates('help.html')

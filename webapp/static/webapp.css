@@ -7,157 +7,140 @@ body {
     font-family: Helvetica;
 }
 
+
 .page{
     width: 98vw;
     height: 100vh;
 }
 
 #header {
+    display: flex;
     width: 100%;
     height: 10%;
-    font-size: 30px;
 }
 
-#horizontal-navbar {
-    float: left;
-    width: 88%;
-    height: 8%;
-    border: 1px solid black;
-    background-color: pink;
+#title{
+    font-size:40px;
+    font-weight:bold;
+    align-self:baseline;
+}
+
+#header > a{
+    flex-basis: 50%;
+}
+
+#search_bar {
+    display: flex;
+    vertical-align: right;
+    justify-content: right;
+    font-size: 21px;
+    height: 40%;
+    margin-left: 70%;
     
 }
 
-#horizontal-navbar2 ul {
-    list-style-type: none;
-    overflow: hidden;
+.horizontal-navbar {
+    display: flex;
+    justify-content: center;
+    height: 6%;
+    width: 85%;
+    
 }
 
-#horizontal-navbar2 li {
-    display: inline;
-    float: left;
+.horz-button {
+    border: none;
     color: black;
+    text-align: center;
     text-decoration: none;
+    cursor: pointer;
+    background-color: #DDDDDD;
+    height: 100%;
+    flex-basis: 33.33%;
+
+}
+
+.horz-button:hover {
+    border-bottom: 2px solid red;
+}
+
+.horz-button:active{
+    border-bottom: 4px solid red;
 }
 
 
 #content {
-    margin: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1%;
     float: right;
-    width: 86%;
+    width: 83%;
     height: 80%;
+    justify-content: space-between;
 }
 
-#team_scroll_bar {
-    width: 10%;
-    float: left;
-    height: 120%;
-    background-color: #f1f1f1;
-}
-
-#team_scroll_bar ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-#team_scroll_bar ul li{
-    color: black;
-    font-size: 17px;
-    padding: 8px 8px;
-    text-decoration: none;
-}
-
-#ppg-content ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-#ppg-content ul li{
-    color: black;
-    font-size: 17px;
-    padding: 8px 8px;
-    text-decoration: none;
-}
-
-#ast-content ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-#ast-content ul li{
-    color: black;
-    font-size: 17px;
-    padding: 8px 8px;
-    text-decoration: none;
-}
-
-#mini-header-left {
-    width: 45%;
+.mini-header {
     height: 6%;
-    float: left;
+    width: 48%;
     background-color: lightblue;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid silver;
 }
 
-#mini-header-right {
-    width: 50%;
-    height: 6%;
-    float: right;
-    background-color: lightblue;
-    border-bottom: 2px solid grey;
-}
-
-#ppg-content {
-    width: 50%;
+.stat-content{
+    width: 48%;
     height: 40%;
-    float: left;
+    background-color: yellow;
     
 }
 
-#ast-content {
-    width: 50%;
-    height: 40%;
-    float: right;
-}
 
-
-#reb-content {
-    width: 50%;
-    height: 40%;
+#team_scroll_bar {
+    display:flex;
+    flex-direction: column;
+    width: 15%;
     float: left;
+    height: 138%;
 }
 
-
-#blk-content {
-    width: 50%;
-    height: 40%;
-    float: right;
+.team {
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #DDDDDD;
+    width: 100%;
+    height: 2.9%;
 }
 
-
-#stl-content {
-    width: 50%;
-    height: 40%;
-    float: left;
-}
-
-
-#fgpct-content {
-    width: 50%;
-    height: 40%;
-    float: right;
-}
-
-
-li a:hover:not(.active) {
-    background-color: grey;
-  }
-
-li a:active {
+.team:hover {
     background-color: darkgray;
 }
+
+.team:active{
+    background-color:darkgray;
+    color:white;
+}
+
+#content > games{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    font-size: 12px;
+}
+
+w{
+    color:darkgreen;
+}
+
+date{
+    color:darkgrey;
+    font-size: 8px;
+}
+
+
+
+
+
 
 
 

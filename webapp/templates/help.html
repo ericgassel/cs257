@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+    <link rel="stylesheet" type="text/css" href="../static/webapp.css" />
+    <script src="./static/webapp.js"></script>
+    <title>BEPIS</title>
+</head>
+
+<body>
+    <div class = "page">
+        <div id = "header">
+            <a id="title">NBA Stat Leaders</b></a>
+
+            <a>
+                <form id = "search_bar">
+                    <br> <input type="text" onkeyup="search_player()" name="player_name" placeholder="Search here...">
+                </form>
+            </a>
+        
+        </div>
+        
+   
+
+        <div id = "team_scroll_bar">
+            If you're reading this, then something went wrong.
+        </div>
+
+        <div class = "horizontal-navbar">
+            
+            <button id="players_button" class="horz-button">Players</button>
+            <button id="teams_button" class="horz-button">Teams</button>
+            <button id="games_button" class="horz-button">Games</button>
+        
+        </div>
+
+        <div id = "content">
+            
+            <div class="mini-header">
+                Points Per Game
+            </div>
+            <div class="mini-header">
+                Assists Per Game
+            </div>
+            <div class="stat-content" id = "ppg-content">
+                <ul id = "ppg-list">
+                </ul>
+            </div>
+            <div class="stat-content" id = "ast-content">
+                <ul id = "ast-list">
+                </ul>
+            </div>
+            <div class="mini-header">
+                Rebounds Per Game
+            </div>
+            <div class="mini-header">
+                Blocks Per Game
+            </div>
+            <div class="stat-content" id = "reb-content">
+            </div>
+            <div class="stat-content" id = "blk-content">
+                <p>hi</p>
+            </div>
+            <div class="mini-header">
+                Steals Per Game
+            </div>
+            <div class="mini-header">
+                Field Goal Percentage
+            </div>
+            <div class="stat-content" id = "stl-content">
+                <p>hi</p>
+            </div>
+            <div class="stat-content" id = "fgpct-content">
+                <p>hi</p>
+            </div>
+        </div>
+    </div>
+</html>

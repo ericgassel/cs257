@@ -1,0 +1,40 @@
+#Eric Gassel and Sam Gloss
+
+REQUEST: /team?{season}
+
+RESPONSE: returns a JSON list with keys of the top 5 teams in PPG, PAPG, Record, Point Differential, RPG, APG
+*Season will default to 2020 if none otherwise included
+
+REQUEST: /team/{season}/full_list={category}
+
+RESPONSE: returns a JSON list with keys that are selectable and can become ordered ranking of all 30 teams
+
+REQUEST: /team/{season}/{team_name}/{opponent}
+
+RESPONSE: a JSON list with keys that include the specified team’s roster, wins and losses, schedule (list of each of the games), general team stats with rankings (ppg, fg%, bpg, apg, etc). If opponent is specified, it will limit the data shown to stats vs that opponent
+
+REQUEST: /player?{season}/{player_name}?[opponent]
+
+RESPONSE: returns a JSON list with keys of player’s statistics over their career or the specified season either against the whole NBA or against a specified opponent. 
+
+REQUEST: /player?{season}
+
+RESPONSE: returns a JSON list with keys of the top 5 players in PPG, PAPG, Record, Point Differential, RPG, APG
+
+REQUEST: /player/{season}/full_list={category}
+
+RESPONSE: return a JSON list with keys of each major category that when selected become an ordered ranking of all NBA players in the selected category
+
+
+REQUEST: /game/game_id={game_id}
+
+RESPONSE: returns a JSON list with keys of all the statistics from the selected game.
+
+REQUEST: /team/{season}
+	RESPONSE: returns a JSON list with keys of all the players from one team during the selected season
+
+REQUEST: /team/players/{season}
+	
+	RESPONSE: returns a JSON list with keys of all the players and their statistics from the selected season, is ranked by selected stastic
+
+

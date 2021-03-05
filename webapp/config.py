@@ -1,4 +1,4 @@
 #config.py
-user='jondich'
+user=''
 password=''
-database='grading'
+database=''
