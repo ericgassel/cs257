@@ -148,7 +148,6 @@ def get_player_names(player_name):
 @api.route('/api/help')
 def return_help_screen():
     #returns the help documentat
-    help_doc = 'words'
-
-    return json.dumps(help_doc)
+    
+    return flask.render_template('help.html')
 
