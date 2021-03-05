@@ -38,4 +38,4 @@ if __name__ == '__main__':
 
 @app.route('/api/help')
 def return_help_screen():
-    return flask.render_templates('help.html')
+    return flask.render_template('help.html')
