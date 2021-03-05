@@ -1,78 +1,80 @@
+﻿<!Eric Gassel and Sam Gloss>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="../static/webapp.css" />
     <script src="./static/webapp.js"></script>
-    <title>BEPIS</title>
+    <title>NBA HELP PAGE</title>
 </head>
 
 <body>
-    <div class = "page">
-        <div id = "header">
-            <a id="title">NBA Stat Leaders</b></a>
+    <div class="page">
+        <div id="header">
 
-            <a>
-                <form id = "search_bar">
-                    <br> <input type="text" onkeyup="search_player()" name="player_name" placeholder="Search here...">
-                </form>
-            </a>
-        
-        </div>
-        
-   
 
-        <div id = "team_scroll_bar">
-            If you're reading this, then something went wrong.
-        </div>
+            <div id="content">
 
-        <div class = "horizontal-navbar">
-            
-            <button id="players_button" class="horz-button">Players</button>
-            <button id="teams_button" class="horz-button">Teams</button>
-            <button id="games_button" class="horz-button">Games</button>
-        
-        </div>
 
-        <div id = "content">
-            
-            <div class="mini-header">
-                Points Per Game
-            </div>
-            <div class="mini-header">
-                Assists Per Game
-            </div>
-            <div class="stat-content" id = "ppg-content">
-                <ul id = "ppg-list">
-                </ul>
-            </div>
-            <div class="stat-content" id = "ast-content">
-                <ul id = "ast-list">
-                </ul>
-            </div>
-            <div class="mini-header">
-                Rebounds Per Game
-            </div>
-            <div class="mini-header">
-                Blocks Per Game
-            </div>
-            <div class="stat-content" id = "reb-content">
-            </div>
-            <div class="stat-content" id = "blk-content">
-                <p>hi</p>
-            </div>
-            <div class="mini-header">
-                Steals Per Game
-            </div>
-            <div class="mini-header">
-                Field Goal Percentage
-            </div>
-            <div class="stat-content" id = "stl-content">
-                <p>hi</p>
-            </div>
-            <div class="stat-content" id = "fgpct-content">
-                <p>hi</p>
+                <br> REQUEST: /teams/ </br>
+
+
+                <br> RESPONSE: returns a JSON list with keys of all 30 teams
+
+                <br> EXAMPLE: </br>
+
+                <br>.            /teams/ </br>
+                <br>.           [{'team_name': Hawks},{'team_name': Celtics}...]</br>
+
+
+                <br> REQUEST: /teams/ppg/ </br>
+
+
+                <br> RESPONSE: returns a JSON list with keys of all 30 teams with their points scored
+
+                <br> EXAMPLE: </br>
+
+                <br>.            /teams/ppg/ </br>
+                <br>.           [{'team_name': Hawks, 'PPG': 103},{'team_name': Celtics, 'PPG': 105}...]</br>
+
+
+                <br> REQUEST: /teams/apg/ </br>
+
+
+                <br> RESPONSE: returns a JSON list with keys of all 30 teams with their assists per game
+
+                <br> EXAMPLE: </br>
+
+                <br>.            /teams/apg/ </br>
+                <br>.           [{'team_name': Hawks, 'APG': 23},{'team_name': Celtics, 'APG': 27}...]</br>
+
+
+                <br> REQUEST: /players/ppg/ <br>
+
+                <br>RESPONSE: return a JSON list with keys of the top 10 scorers in PPG <br>
+                <br>EXAMPLE: <br>
+                <br>.     /players/ppg/
+                <br>.     [{'Player_1': Lebron James, 'PPG1': 28, 'Player_2': Jayson Tatum, 'PPG2': 27.6...'Player_10': Kevin Durant, 'PPG10': 26.7}] <br>
+
+                <br> REQUEST: /players/names/ <br>
+
+                <br>RESPONSE: return a JSON list with keys of all the NBA Players Names <br>
+                <br> EXAMPLE: <br>
+                <br>.     /players/names/
+                <br>.     [{'Player_1': Lebron James, 'Player_2': Jayson Tatum, 'Player_1000': Kevin Durant}] <br>
+
+
+                <br> REQUEST: /games/ <br>
+
+                <br> RESPONSE: returns a JSON list with keys of all the games and their statsitcs. <br>
+
+                <br> EXAMPLE <br>
+
+                <br>.    /games/
+                <br>.    [{'Team': Jazz, 'Opponent': Suns, 'PTS': 95, 'PA': 106 ...}...] <br>
+
+
+
             </div>
         </div>
-    </div>
 </html>
