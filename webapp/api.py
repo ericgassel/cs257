@@ -145,7 +145,7 @@ def get_player_names(player_name):
     return json.dumps(player_list)
 
 
-@api.route('/api/help')
+@api.route('/help/')
 def return_help_screen():
     #returns the help documentat
     
