@@ -34,13 +34,14 @@ CREATE TABLE player_game(
     DRB INT,
     TRB INT,
     AST INT,
+    STL INT,
     BLK INT,
     TOV INT,
     PF INT,
     plus_minus INT
 );
 
-\copy player from ('csv-data/players.csv') DELIMITER ',' CSV NULL AS 'NULL' HEADER;
-\copy team from ('csv-data/team.csv') DELIMITER ',' CSV NULL AS 'NULL' HEADER;
-\copy game from ('csv-data/games.csv') DELIMITER ',' CSV NULL AS 'NULL' HEADER;
-\copy player_game from ('csv-data/players_games.csv') DELIMITER ',' CSV NULL AS 'NULL' HEADER;
+\copy player from 'csv-data/players.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER;
+\copy team from 'csv-data/team.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER;
+\copy game from 'csv-data/games.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER;
+\copy player_game from 'csv-data/players_games.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER;

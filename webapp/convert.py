@@ -258,7 +258,7 @@ def write_dictionaries():
             TO = stats_list['TO']
             PF = stats_list['PF']
             plus_minus = stats_list['plus_minus']
-            writer.writerow([stats_id,player_id,game_id,team_id,MP,PTS,FG,FGA,FG3,FG3A,FT,FTA,ORB,DRB,TRB,AST,STL,BLK,TO,PF,plus_minus])
+            writer.writerow([stats_id,player_ID,game_id,team_id,MP,PTS,FG,FGA,FG3,FG3A,FT,FTA,ORB,DRB,TRB,AST,STL,BLK,TO,PF,plus_minus])
 
 
 def main():
