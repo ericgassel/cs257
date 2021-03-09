@@ -1,4 +1,4 @@
 #config.py
-user=''
+user='jondich'
 password=''
-database=''
+database='webapp'
