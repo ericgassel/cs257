@@ -174,19 +174,36 @@ def get_games_list(season):
                 WHERE season = %s
                 '''
 
+    query_team = '''SELECT id, team FROM team'''
+
     connection = establish_database_connection()
     cursor = connection.cursor()
+    cursor_team = connection.cursor()
+
     try:
         cursor.execute(query,(season,))
     except Exception as e:
         print (e)
         exit()
 
+    try:
+        cursor_team.execute(query_team,(season,))
+    except Exception as e:
+        print (e)
+        exit()
+
+    teams_dict = {}
+    for row in cursor_team:
+        ID = row[0]
+        teams_dict[ID] = {'team':row[1]} 
+
     games_list = []
     for row in cursor:
-        home_team = row[0]
+        home_team = teams_dict[row[0]]
+        home_team = home_team['team']
         home_score = row[1]
-        away_team = row[2]
+        away_team = teams_dict[row[2]]
+        away_team = away_team['team']
         away_score = row[3]
         month = row[4]
         day = row[5]
