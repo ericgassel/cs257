@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 '''
-    webapp.py
-    Jeff Ondich
-    6 November 2020
+    Eric Gassel and Sam Gloss
+    March 11 2021
 
     A tiny Flask web application, including API, to be used
     as a template for setting up your web app assignment.
