@@ -4,12 +4,15 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <link rel="stylesheet" type="text/css" href="../static/webapp.css" />
     <script src="./static/webapp.js"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <title>NBA Stat Leaders</title>
 </head>
 
 <body>
     <div class = "page">
         <div id = "header">
+            <img id="logo" src="./static/nbalogo.jpg" alt="NBA Logo"/>
+
             <a id="title">NBA Stat Leaders</b></a>
 
             <a>
@@ -23,7 +26,6 @@
    
 
         <div id = "team_scroll_bar">
-            If you're reading this, then something went wrong.
         </div>
 
         <div class = "horizontal-navbar">
@@ -42,13 +44,13 @@
             <div class="mini-header">
                 Assists Per Game
             </div>
-            <div class="stat-content" id = "ppg-content">
-                <ul id = "ppg-list">
-                </ul>
+            <div class="stat-content">
+                <a id = "ppg-list">
+                </a>
             </div>
-            <div class="stat-content" id = "ast-content">
-                <ul id = "ast-list">
-                </ul>
+            <div class="stat-content">
+                <a id = "ast-list">
+                </a>
             </div>
             <div class="mini-header">
                 Rebounds Per Game
@@ -56,20 +58,27 @@
             <div class="mini-header">
                 Blocks Per Game
             </div>
-            <div class="stat-content" id = "reb-content">
-                Still a work in progress. Having database problems. The games button will have duplicates and some incorrect dates. These ugly colors will not be present for the final draft.
+            <div class="stat-content">
+                <a id = "reb-list">
+                </a>
             </div>
-            <div class="stat-content" id = "blk-content">
+            <div class="stat-content">
+                <a id = "blk-list">
+                </a>
             </div>
             <div class="mini-header">
                 Steals Per Game
             </div>
             <div class="mini-header">
-                Field Goal Percentage
+                Turnovers Per Game
             </div>
-            <div class="stat-content" id = "stl-content">
+            <div class="stat-content">
+                <a id = "stl-list">
+                </a>
             </div>
-            <div class="stat-content" id = "fgpct-content">
+            <div class="stat-content">
+                <a id = "tov-list">
+                </a>
             </div>
         </div>
     </div>

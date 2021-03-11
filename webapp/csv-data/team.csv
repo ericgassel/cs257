@@ -1,23 +1,23 @@
-id,team,abbreviation
-1,Phoenix Suns,PHX
-2,Utah Jazz,UTA
+id, team, abbrev
+1,Phoenix Suns, PHX
+2,Utah Jazz, UTA
 3,Philadelphia 76ers,PHI
 4,Orlando Magic,ORL
-5,New Orleans Pelicans,NOP
-6,Oklahoma City Thunder,OKC
-7,Sacramento Kings,SAC
-8,Houston Rockets,HOU
-9,Chicago Bulls,CHI
-10,Washington Wizards,WAS
-11,Cleveland Cavaliers,CLE
-12,Indiana Pacers,IND
-13,New York Knicks,NYK
-14,Toronto Raptors,TOR
-15,Los Angeles Lakers,LAL
-16,San Antonio Spurs,SAS
-17,Portland Trail Blazers,POR
-18,Los Angeles Clippers,LAC
-19,Charlotte Hornets,CHA
+5,New Orleans Pelicans, NOP
+6,Oklahoma City Thunder, OKC
+7,Sacramento Kings, SAC
+8,Houston Rockets, HOU
+9,Chicago Bulls, CHI
+10,Washington Wizards, WAS
+11,Cleveland Cavaliers, CLE
+12,Indiana Pacers, IND
+13,New York Knicks, NYK
+14,Toronto Raptors, TOR
+15,Los Angeles Lakers, LAL
+16,San Antonio Spurs, SAS
+17,Portland Trail Blazers, POR
+18,Los Angeles Clippers, LAC
+19,Charlotte Hornets, CHA
 20,Dallas Mavericks,DAL
 21,Atlanta Hawks,ATL
 22,Brooklyn Nets,BKN

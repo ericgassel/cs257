@@ -1,3 +1,8 @@
+DROP TABLE player;
+DROP TABLE team;
+DROP TABLE game;
+DROP TABLE player_game;
+
 CREATE TABLE player(
     id INT,
     player text
@@ -5,16 +10,20 @@ CREATE TABLE player(
 
 CREATE TABLE team(
     id INT,
-    team text
+    team text,
+    abbrev text
 );
 
 CREATE TABLE game(
     id INT,
     home_team INT,
+    home_score INT,
     away_team INT,
+    away_score INT,
     year INT,
     month INT,
-    day INT
+    day INT,
+    season text
 );
 
 CREATE TABLE player_game(

@@ -9,12 +9,10 @@ window.onload = initialize;
 
 function initialize() {
     LoadVertNavBar();
+    onPlayersButton();
 
     var players_button = document.getElementById('players_button');
     players_button.onclick = onPlayersButton;
-
-    onPlayersButton();
-
     var teams_button = document.getElementById('teams_button');
     teams_button.onclick = onTeamsButton;
     var games_button = document.getElementById('games_button');
@@ -54,100 +52,221 @@ function LoadVertNavBar(){
 }
 
 function onPlayersButton(){
-    //hardcoding data because failing queries
-    var ppg_content = document.getElementById('ppg-list');
-    var ast_content = document.getElementById('ast-list');
-    var reb_content = document.getElementById('reb-list');
+    var PPG_content = document.getElementById('ppg-list');
+    var APG_content = document.getElementById('ast-list');
+    var RPG_content = document.getElementById('reb-list');
+    var SPG_content = document.getElementById('stl-list');
+    var BPG_content = document.getElementById('blk-list');
+    var TOV_content = document.getElementById('tov-list');
 
-    ppg_content.innerHTML = '<p>1. Bradley Beal       32.9</p><p>2. Joel Embiid       30.2</p><p>3. Damian Lillard       29.8</p><p>4. Stephen Curry       29.7</p><p>5. Giannis Antetokounmpo       29</p>'
-    ast_content.innerHTML = '<p>1. James Harden      11.1</p><p>2. Russell Westbrook       9.8</p><p>3. Trae Young       9.4</p><p>4. Luka Doncic       9.0</p><p>5. Chris Paul       8.8</p>'
+    players_button.focus();
+
+    season = '2019_2020';
+    type = 'PPG';
+
+    var url = getAPIBaseURL() + '/players/' + type + '/' + season + '/';
+
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        PPG_content.innerHTML = listBody;
+    })
+
+    type = 'APG'
+    var url2 = getAPIBaseURL() + '/players/' + type + '/' + season + '/';
+
+    fetch(url2, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        APG_content.innerHTML = listBody;
+    })
+    
+    type = 'SPG'
+    var url3 = getAPIBaseURL() + '/players/' + type + '/' + season + '/';
+
+    fetch(url3, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        SPG_content.innerHTML = listBody;
+    })
+    
+    type = 'BPG'
+    var url4 = getAPIBaseURL() + '/players/' + type + '/' + season + '/';
+
+    fetch(url4, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        BPG_content.innerHTML = listBody;
+    })
+    
+    type = 'RPG'
+    var url5 = getAPIBaseURL() + '/players/' + type + '/' + season + '/';
+
+    fetch(url5, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        RPG_content.innerHTML = listBody;
+    })
+
+    
+    type = 'TOV'
+    var url6 = getAPIBaseURL() + '/players/' + type + '/' + season + '/';
+
+    fetch(url6, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        TOV_content.innerHTML = listBody;
+    })
+
 }
 
+function fillTopFive(per_games_list){
+    var listBody = '';
+    
+        for (var k = 0; k < 5; k++) {
+            var stat_player = per_games_list[k];
+            listBody += '<a class="top-list"> '+ (k+1)+'. ' + stat_player['name'] 
+                      + '-'+stat_player['per_game']+'</a>'
+                      ;
+        }
+    return listBody;
+}
+
+function onTeamsButton(){
+    var PPG_content = document.getElementById('ppg-list');
+    var APG_content = document.getElementById('ast-list');
+    var RPG_content = document.getElementById('reb-list');
+    var SPG_content = document.getElementById('stl-list');
+    var BPG_content = document.getElementById('blk-list');
+    var TOV_content = document.getElementById('tov-list');
+
+    teams_button.focus();
+
+    season = '2019_2020';
+    type = 'PPG';
+
+    var url = getAPIBaseURL() + '/teams/' + type + '/' + season + '/';
+
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        PPG_content.innerHTML = listBody;
+    })
+
+    type = 'APG'
+    var url2 = getAPIBaseURL() + '/teams/' + type + '/' + season + '/';
+
+    fetch(url2, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        APG_content.innerHTML = listBody;
+    })
+    
+    type = 'SPG'
+    var url3 = getAPIBaseURL() + '/teams/' + type + '/' + season + '/';
+
+    fetch(url3, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        SPG_content.innerHTML = listBody;
+    })
+    
+    type = 'BPG'
+    var url4 = getAPIBaseURL() + '/teams/' + type + '/' + season + '/';
+
+    fetch(url4, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        BPG_content.innerHTML = listBody;
+    })
+    
+    type = 'RPG'
+    var url5 = getAPIBaseURL() + '/teams/' + type + '/' + season + '/';
+
+    fetch(url5, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        RPG_content.innerHTML = listBody;
+    })
+
+    
+    type = 'TOV'
+    var url6 = getAPIBaseURL() + '/teams/' + type + '/' + season + '/';
+
+    fetch(url6, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(per_games_list) {
+        listBody = fillTopFive(per_games_list);
+        TOV_content.innerHTML = listBody;
+    })
+            
+}
+    
 function onGamesButton(){
-    var  content = document.getElementById('content'); 
-    var url = getAPIBaseURL() + '/games/';
+
+    var content = document.getElementById('content');
+
+    season = "2019_2020"
+
+    var url = getAPIBaseURL() + '/games/' + season + '/';
 
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
 
     .then(function(games_list) {
-        var list_body = '<games>';
+        listBody = '<games-page>';
         for (var k = 0; k < games_list.length; k++) {
             var game = games_list[k];
-            list_body += '<p>';
-            if (game['team_score']>game['opponent_score']){
-                list_body+='<w>'+game['team']+'</w>'+' - '+game['team_score']+'</p>'+'<p>'+game['opponent']+' - '+game['opponent_score'];
-            }
-            else{
-                list_body+=game['team']+' - '+game['team_score']+'</p>'+'<p>'+'<w>'+game['opponent']+'<w>'+' - '+game['opponent_score'];
-            }
-                
-            list_body+='  '+'<date>'+game['month']+'-'+game['day']+'-'+game['year']+'</date>'+'</p>';
+            listBody += '<a class="game"> '+ game['away_team']+' @ '+game['home_team']+'</a>'
+                      ;
         }
-        list_body += '</games>'
-        content.innerHTML = list_body;
+        listBody+='<games-page>';
+        content.innerHTML = listBody;
     })
+
 
 }
-
-function onTeamsButton(){
-
-    var ppg = document.getElementById('ppg-list');
-    var ast = document.getElementById('ast-list');
-    var url = getAPIBaseURL() + '/teams/ppg/';
-
-    fetch(url, {method: 'get'})
-
-    .then((response) => response.json())
-
-    .then(function(ppg_list) {
-        var listBody = '';
-        for (var k = 0; k < ppg_list.length; k++) {
-            var ppg_team = ppg_list[k];
-            listBody += '<li>' + ppg_team['team']
-                      + ', ' + ppg_team['points'];
-                      + '</li>\n';
-        }
-
-        ppg.innerHTML = listBody;
-        
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });
-
-    /*url = getAPIBaseURL() + '/teams/apg/';
-
-    fetch(url, {method: 'get'})
-
-    .then((response) => response.json())
-
-    .then(function(apg_list) {
-        var listBody = '';
-        for (var k = 0; k < apg_list.length; k++) {
-            var apg_team = apg_list[k];
-            listBody += '<li>' + apg_team['name']
-                      + ', ' + apg_team['assists'];
-                      + '</li>\n';
-        }
-
-        
-        
-        ast.innerHTML = listBody;
-        
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });*/
-
 function search_player() { 
         var  content = document.getElementById('content');
         let input = document.getElementById('player_name').value 
         input=input.toLowerCase(); 
-        var url = getAPIBaseURL() + '/players/<input>/'
+        var url = getAPIBaseURL() + '/players/<game_stat>/<season>/<input>/'
 
         fetch(url, {method: 'get'})
 
@@ -161,19 +280,5 @@ function search_player() {
             }
             content.innerHTML = list_body;
         })
-
-
-        /*let x = list_body
-        
-          
-        for (i = 0; i < x.length; i++) {  
-            if (!x[i].innerHTML.toLowerCase().includes(input)) { 
-                x[i].style.display="none"; 
-            } 
-            else { 
-                x[i].style.display="";                  
-            } 
-        } */
     } 
 
-}

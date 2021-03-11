@@ -35,137 +35,201 @@ def write_dictionaries():
             game = row[0]
             year = int(game[11:15])
             month = int(game[15:17])
+            season = get_season(month,year)
             day = int(game[17:19])
             home_team=game[20:23]
+            
             if home_team == "ATL":
                 if team == "Atlanta Hawks":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "BKN":
                 if team == "Brooklyn Nets":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "BOS":
                 if team == "Boston Celtics":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "CHA":
                 if team == "Charlotte Hornets":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "CHI":
                 if team == "Chicago Bulls":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "CLE":
                 if team == "Cleveland Cavaliers":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "DAL":
                 if team == "Dallas Mavericks":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "DEN":
                 if team == "Denver Nuggets":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "DET":
                 if team == "Detroit Pistons":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "GSW":
                 if team == "Golden State Warriors":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "HOU":
                 if team == "Houston Rockets":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "IND":
                 if team == "Indiana Pacers":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "LAC":
                 if team == "Los Angeles Clippers":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "LAL":
                 if team == "Los Angeles Lakers":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "MEM":
                 if team == "Memphis Grizzlies":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "MIA":
                 if team == "Miami Heat":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "MIL":
                 if team == "Milwaukee Bucks":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "MIN":
                 if team == "Minnesota Timberwolves":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "NOP":
                 if team == "New Orleans Pelicans":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "NYK":
                 if team == "New York Knicks":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "OKC":
                 if team == "Oklahoma City Thunder":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "ORL":
                 if team == "Orlando Magic":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "PHI":
                 if team == "Philadelphia 76ers":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "PHX":
                 if team == "Phoenix Suns":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "POR":
                 if team == "Portland Trail Blazers":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "SAC":
                 if team == "Sacramento Kings":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "SAS":
                 if team == "San Antonio Spurs":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "TOR":
                 if team == "Toronto Raptors":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "UTA":
                 if team == "Utah Jazz":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
             if home_team == "WAS":
                 if team == "Washington Wizards":
                     home_team = team
                     away_team = row[2]
+                    home_score = row[3]
+                    away_score = row[4]
                     
             if isinstance(home_team,str):
                 away_team = team
                 home_team = row[2]
+                home_score = row[4]
+                away_score = row[3]
                 
             if game in games_dict:
                 games_value = games_dict[game]
             else:
-                games_value = {'id': len(games_dict)+1,'home_team':home_team,'away_team':away_team,'year':year,'month':month,'day':day}
+                games_value = {'id': len(games_dict)+1,'home_team':home_team,'home_score':home_score,'away_team':away_team,'away_score':away_score,'year':year,'month':month,'day':day, 'season': season}
                 games_dict[game] = games_value
             game_id = games_value['id']
             
@@ -210,7 +274,7 @@ def write_dictionaries():
             writer.writerow([player_id, player])
             
     with open('csv-data/games.csv', 'w', newline='') as csvfile:
-        games_info = ['id', 'home_team','away_team','year','month','day']
+        games_info = ['id', 'home_team','home_score','away_team','away_score','year','month','day','season']
         writer = csv.writer(csvfile, delimiter = ',', quotechar='|')
         writer.writerow(games_info)
         for game in games_dict:
@@ -221,7 +285,10 @@ def write_dictionaries():
             day = games_list['day']
             home_team=games_list['home_team']
             away_team=games_list['away_team']
-            writer.writerow([game_id, home_team,away_team, year, month,day])
+            home_score = games_list['home_score']
+            away_score = games_list['away_score']
+            season = games_list['season']
+            writer.writerow([game_id, home_team,home_score,away_team,away_score, year, month,day, season])
             
     with open('csv-data/team.csv', 'w', newline='') as csvfile:
         matchup_info = ['id', 'team']
@@ -259,6 +326,19 @@ def write_dictionaries():
             PF = stats_list['PF']
             plus_minus = stats_list['plus_minus']
             writer.writerow([stats_id,player_ID,game_id,team_id,MP,PTS,FG,FGA,FG3,FG3A,FT,FTA,ORB,DRB,TRB,AST,STL,BLK,TO,PF,plus_minus])
+
+def get_season(month, year):
+    if month < 10:
+            return str(year - 1) + '_' + str(year)
+  
+    elif year != 2020:
+            return str(year) + '_' + str(year + 1)
+            
+    elif month == 10:
+            return str(year - 1) + '_' + str(year)
+    else:
+            return str(year) + '_' + str(year + 1)
+    
 
 
 def main():
