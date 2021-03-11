@@ -57,7 +57,6 @@ function get_selected_value(){
     var e = document.getElementById("season");
     var result = e.options[e.selectedIndex].value;
     season = result
-    console.log(selected)
     if (selected == 'players'){
         on_players_button()
     } 
@@ -182,7 +181,6 @@ function on_teams_button(){
     var TOV_content = document.getElementById('tov-list');
 
     teams_button.focus();
-    console.log('teams')
     selected = 'teams'
 
     type = 'PPG';
