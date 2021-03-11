@@ -164,6 +164,45 @@ def get_team_per_game(per_game, season):
     
     return json.dumps(sorted_pg)
  
+@api.route('/teams/<team>/<per_game>/<season>', strict_slashes=False)
+def return_team_leaders_in_statistic(team, per_game, season):
+    game_stat = per_game_convert(per_game)
+    query = f'''SELECT player.player, CAST(SUM(player_game.{game_stat}) AS FLOAT)/CAST(COUNT(player_game.{game_stat}) AS FLOAT) as PG,
+        COUNT(player_game.MP) AS GP
+        FROM game, player, player_game, team
+        WHERE player_game.MP > 0
+        AND player.id=player_game.player_id
+        AND game.id=player_game.game_id
+        AND game.season = %s
+        AND team.team = %s
+        AND game.team_id = team.id
+        GROUP BY player.player
+        ORDER BY PG DESC
+        LIMIT 5
+        '''
+    connection = establish_database_connection()
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query,(season,))
+    except Exception as e:
+        print (e)
+        exit()
+
+    player_request = flask.request.args.get('player_name')
+    
+    per_game_list = []
+    for row in cursor:
+        player=row[0]
+        per_game=round(row[1],1)
+        if player_request != None:
+            if player == player_request:
+                per_game_list.append({'name':player,'per_game':per_game})
+            continue
+        per_game_list.append({'name':player,'per_game':per_game})
+    cursor.close()
+    connection.close()
+    return json.dumps(per_game_list)
+
 
 
 @api.route('/games/<season>', strict_slashes=False)
@@ -211,6 +250,8 @@ def get_games_list(season):
         games_list.append({'home_team':home_team,'home_score':home_score,'away_team':away_team,'away_score':away_score,'month':month,'day':day,'year':year})
 
     return json.dumps(games_list)
+
+
 
 
 @api.route('/help/')
