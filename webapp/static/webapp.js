@@ -6,19 +6,32 @@
  */
 
 window.onload = initialize;
+var season = '2020_2021'
+var selected = 'players'
 
 function initialize() {
     LoadVertNavBar();
     onPlayersButton();
 
     var players_button = document.getElementById('players_button');
-    players_button.onclick = onPlayersButton;
+    players_button.onclick = playersSelected();
     var teams_button = document.getElementById('teams_button');
-    teams_button.onclick = onTeamsButton;
+    teams_button.onclick = teamsSelected();
     var games_button = document.getElementById('games_button');
     games_button.onclick = onGamesButton;
 
     
+}
+
+function playersSelected(){
+    console.log('players')
+    selected = 'players'
+    onPlayersButton();
+}
+function teamsSelected(){
+    console.log("teams")
+    selected = 'teams'
+    onTeamsButton();
 }
 
 function getAPIBaseURL() {
@@ -50,6 +63,21 @@ function LoadVertNavBar(){
     });
 
 }
+function GetSelectedValue(){
+    var e = document.getElementById("season");
+    var result = e.options[e.selectedIndex].value;
+    season = result
+    if (selected = "players"){
+        onPlayersButton();
+    } 
+    else if (selected = "teams"){
+        onTeamsButton();
+    }
+    else{
+        console.log('something went wrong');
+    }
+   
+}
 
 function onPlayersButton(){
     var PPG_content = document.getElementById('ppg-list');
@@ -61,7 +89,7 @@ function onPlayersButton(){
 
     players_button.focus();
 
-    season = '2019_2020';
+    
     type = 'PPG';
 
     var url = getAPIBaseURL() + '/players/' + type + '/' + season + '/';
@@ -160,7 +188,6 @@ function onTeamsButton(){
 
     teams_button.focus();
 
-    season = '2019_2020';
     type = 'PPG';
 
     var url = getAPIBaseURL() + '/teams/' + type + '/' + season + '/';
