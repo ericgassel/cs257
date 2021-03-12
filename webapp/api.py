@@ -52,28 +52,48 @@ def per_game_convert(stat):
     return stat
     
 
-@api.route('/players/<per_game>/<season>', strict_slashes=False)
-def get_players_per_game(per_game, season):
-    
+@api.route('/players/<per_game>/<season>/<month>', strict_slashes=False)
+def get_players_per_game(per_game, season, month):
     game_stat = per_game_convert(per_game)
-    query = f'''SELECT player.player, CAST(SUM(player_game.{game_stat}) AS FLOAT)/CAST(COUNT(player_game.{game_stat}) AS FLOAT) as PG,
-        COUNT(player_game.MP) AS GP
-        FROM game, player, player_game
-        WHERE player_game.MP > 0
-        AND player.id=player_game.player_id
-        AND game.id=player_game.game_id
-        AND game.season = %s
-        GROUP BY player.player
-        ORDER BY PG DESC
-        LIMIT 5 '''
-    
     connection = establish_database_connection()
     cursor = connection.cursor()
-    try:
-        cursor.execute(query,(season,))
-    except Exception as e:
-        print (e)
-        exit()
+    if month == "0":
+        query = f'''SELECT player.player, CAST(SUM(player_game.{game_stat}) AS FLOAT)/CAST(COUNT(player_game.{game_stat}) AS FLOAT) as PG,
+            COUNT(player_game.MP) AS GP
+            FROM game, player, player_game
+            WHERE player_game.MP > 0
+            AND player.id=player_game.player_id
+            AND game.id=player_game.game_id
+            AND game.season = %s
+            GROUP BY player.player
+            ORDER BY PG DESC
+            LIMIT 5 '''
+        try:
+            cursor.execute(query,(season,))
+        except Exception as e:
+            print (e)
+            exit()
+        
+    else:
+        query = f'''SELECT player.player, CAST(SUM(player_game.{game_stat}) AS FLOAT)/CAST(COUNT(player_game.{game_stat}) AS FLOAT) as PG,
+            COUNT(player_game.MP) AS GP
+            FROM game, player, player_game
+            WHERE player_game.MP > 0
+            AND player.id=player_game.player_id
+            AND game.id=player_game.game_id
+            AND game.season = %s
+            AND game.month = %s
+            GROUP BY player.player
+            ORDER BY PG DESC
+            LIMIT 5 '''
+        try:
+            cursor.execute(query,(season,month,))
+        except Exception as e:
+            print (e)
+            exit()
+    
+   
+    
 
     player_request = flask.request.args.get('player_name')
     
@@ -103,42 +123,73 @@ def get_team_list():
 
     return json.dumps(teams_list)
 
-@api.route('/teams/<per_game>/<season>', strict_slashes=False) 
-def get_team_per_game(per_game, season):
+@api.route('/teams/<per_game>/<season>/<month>', strict_slashes=False) 
+def get_team_per_game(per_game, season, month):
     game_stat = per_game_convert(per_game)
-    query = f'''SELECT team.team, CAST(SUM(player_game.{game_stat}) AS FLOAT) as sum_points
-        FROM game, player, player_game, team
-        WHERE player.id=player_game.player_id
-        AND game.id=player_game.game_id
-        AND team.id=player_game.team_id
-        AND game.season= %s
-        GROUP BY team.team
-        ORDER BY sum_points DESC
-        '''
-
-    query_count = '''SELECT team.team, COUNT(DISTINCT game.id) as GP
-        FROM game, player_game, team
-        WHERE team.id = player_game.team_id
-        AND game.id=player_game.game_id
-        AND game.season = %s
-        GROUP BY team.team
-        '''
-
     connection = establish_database_connection()
     cursor = connection.cursor()
-    try:
-        cursor.execute(query,(season,))
-    except Exception as e:
-        print (e)
-        exit()
-    
     cursor_count = connection.cursor()
-    try:
-        cursor_count.execute(query_count,(season,))
-    except Exception as e:
-        print (e)
-        exit()
+    if month == "0":
+        print("entered")
+        query = f'''SELECT team.team, CAST(SUM(player_game.{game_stat}) AS FLOAT) as sum_points
+            FROM game, player, player_game, team
+            WHERE player.id=player_game.player_id
+            AND game.id=player_game.game_id
+            AND team.id=player_game.team_id
+            AND game.season= %s
+            GROUP BY team.team
+            ORDER BY sum_points DESC
+            '''
 
+        query_count = '''SELECT team.team, COUNT(DISTINCT game.id) as GP
+            FROM game, player_game, team
+            WHERE team.id = player_game.team_id
+            AND game.id=player_game.game_id
+            AND game.season = %s
+            GROUP BY team.team
+            '''
+        try:
+            cursor.execute(query,(season,))
+        except Exception as e:
+            print (e)
+            exit()
+        try:
+            cursor_count.execute(query_count,(season,))
+        except Exception as e:
+            print (e)
+            exit()
+    else: 
+        query = f'''SELECT team.team, CAST(SUM(player_game.{game_stat}) AS FLOAT) as sum_points
+            FROM game, player, player_game, team
+            WHERE player.id=player_game.player_id
+            AND game.id=player_game.game_id
+            AND team.id=player_game.team_id
+            AND game.season= %s
+            AND game.month = %s
+            GROUP BY team.team
+            ORDER BY sum_points DESC
+            '''
+
+        query_count = '''SELECT team.team, COUNT(DISTINCT game.id) as GP
+            FROM game, player_game, team
+            WHERE team.id = player_game.team_id
+            AND game.id=player_game.game_id
+            AND game.season = %s
+            AND game.month = %s
+            GROUP BY team.team
+            '''
+        try:
+            cursor.execute(query,(season,month,))
+        except Exception as e:
+            print (e)
+            exit()
+        try:
+            cursor_count.execute(query_count,(season,month,))
+        except Exception as e:
+            print (e)
+            exit()
+
+    
     team_request = flask.request.args.get('team_name')
 
 
@@ -170,22 +221,38 @@ def get_team_per_game(per_game, season):
     
     return json.dumps(sorted_pg)
  
-@api.route('/<team>/<season>', strict_slashes=False)
-def return_team_leaders_in_statistic(team, season):
-    query_roster = f'''SELECT DISTINCT player.player FROM player, team, player_game, game
-                WHERE player.id = player_game.player_id
-                AND team.id = player_game.team_id
-                AND team.team LIKE %s
-                AND game.season LIKE %s
-        '''
-    
+@api.route('/<team>/<season>/<month>', strict_slashes=False)
+def return_team_leaders_in_statistic(team, season, month):
     connection = establish_database_connection()
     cursor = connection.cursor()
-    try:
-        cursor.execute(query_roster,(team,season,))
-    except Exception as e:
-        print (e)
-        exit()
+    if month == "0":
+        query_roster = f'''SELECT DISTINCT player.player FROM player, team, player_game, game
+                WHERE player.id = player_game.player_id
+                AND team.id = player_game.team_id
+                AND player_game.game_id = game.id
+                AND team.team = %s
+                AND game.season = %s
+            '''
+        try:
+            cursor.execute(query_roster,(team,season,))
+        except Exception as e:
+            print (e)
+            exit()
+    else:
+        query_roster = f'''SELECT DISTINCT player.player FROM player, team, player_game, game
+                WHERE player.id = player_game.player_id
+                AND team.id = player_game.team_id
+                AND player_game.game_id = game.id
+                AND team.team = %s
+                AND game.season = %s
+                AND game.month = %s
+            '''
+        try:
+            cursor.execute(query_roster,(team,season,month,))
+        except Exception as e:
+            print (e)
+            exit()
+    
     
     per_game_list = []
     for row in cursor:
@@ -197,25 +264,40 @@ def return_team_leaders_in_statistic(team, season):
 
 
 
-@api.route('/games/<season>', strict_slashes=False)
-def get_games_list(season):
-
-    query = f'''SELECT home_team, home_score, away_team, away_score, month, day, year 
+@api.route('/games/<season>/<month>', strict_slashes=False)
+def get_games_list(season, month):
+    connection = establish_database_connection()
+    cursor = connection.cursor()
+    if month == "0":
+        query = f'''SELECT home_team, home_score, away_team, away_score, month, day, year 
                 FROM game
                 WHERE season = %s
                 '''
+        try:
+            cursor.execute(query,(season,))
+        except Exception as e:
+            print (e)
+            exit()
 
+    else:
+        query = f'''SELECT home_team, home_score, away_team, away_score, month, day, year 
+                FROM game
+                WHERE season = %s
+                AND month = %s
+                '''
+        try:
+            cursor.execute(query,(season,month,))
+        except Exception as e:
+            print (e)
+            exit()
+
+  
     query_team = '''SELECT id, team FROM team'''
 
-    connection = establish_database_connection()
-    cursor = connection.cursor()
+    
     cursor_team = connection.cursor()
 
-    try:
-        cursor.execute(query,(season,))
-    except Exception as e:
-        print (e)
-        exit()
+   
 
     try:
         cursor_team.execute(query_team,(season,))
