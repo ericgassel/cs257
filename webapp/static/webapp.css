@@ -181,13 +181,19 @@ tr:nth-child(even) {
     border: 1px solid whitesmoke;
 }
 
-
-#filter-team, .filter-month {
+#filter{
     display: flex;
+    justify-content: flex-start;
+    width: 85%;
+    align-items: flex-start;
+}
+
+#filter-button {
+    display: flex;
+    flex-direction: row;
     height: 4%;
-    width: 40%;
     margin: .5%;
-    margin-left: 16%;
+    
 }
 
 .team-page-header{
@@ -202,12 +208,13 @@ tr:nth-child(even) {
 .team-page{
     display: flex;
     width: 85%;
+    justify-content: space-evenly;
 }
 
 .roster{
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 14%;
 }
 
 .schedule{

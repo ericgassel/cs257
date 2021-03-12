@@ -125,12 +125,13 @@ def get_team_list():
 
 @api.route('/teams/<per_game>/<season>/<month>', strict_slashes=False) 
 def get_team_per_game(per_game, season, month):
+
     game_stat = per_game_convert(per_game)
     connection = establish_database_connection()
     cursor = connection.cursor()
     cursor_count = connection.cursor()
+    
     if month == "0":
-        print("entered")
         query = f'''SELECT team.team, CAST(SUM(player_game.{game_stat}) AS FLOAT) as sum_points
             FROM game, player, player_game, team
             WHERE player.id=player_game.player_id
