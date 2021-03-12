@@ -8,6 +8,9 @@
 window.onload = initialize;
 var season = '2019_2020'
 var selected = 'players'
+var month = '0'
+var selected_team = 'Atlanta Hawks';
+
 
 function initialize() {
     load_vert_nav_bar();
@@ -65,6 +68,31 @@ function get_selected_value(){
     else if (selected == 'games'){
         on_games_button()
     }
+    else if (selected == 'individual_team'){
+        on_selected_team(selected_team)
+    }
+    else{
+        console.log('something went wrong');
+    }
+   
+}
+
+function get_selected_month_value(){
+    var e = document.getElementById("month");
+    var result = e.options[e.selectedIndex].value;
+    month = result
+    if (selected == 'players'){
+        on_players_button()
+    } 
+    else if (selected == 'teams'){
+        on_teams_button()
+    }
+    else if (selected == 'games'){
+        on_games_button()
+    }
+    else if (selected == 'individual_team'){
+        on_selected_team(selected_team)
+    }
     else{
         console.log('something went wrong');
     }
@@ -88,7 +116,7 @@ function on_players_button(){
     
     type = 'PPG';
 
-    var url = get_API_base_URL() + '/players/' + type + '/' + season + '/';
+    var url = get_API_base_URL() + '/players/' + type + '/' + season + '/' + month + '/';
 
     fetch(url, {method: 'get'})
 
@@ -100,7 +128,7 @@ function on_players_button(){
     })
 
     type = 'APG'
-    var url2 = get_API_base_URL() + '/players/' + type + '/' + season + '/';
+    var url2 = get_API_base_URL() + '/players/' + type + '/' + season + '/' + month + '/';
 
     fetch(url2, {method: 'get'})
 
@@ -112,7 +140,7 @@ function on_players_button(){
     })
     
     type = 'SPG'
-    var url3 = get_API_base_URL() + '/players/' + type + '/' + season + '/';
+    var url3 = get_API_base_URL() + '/players/' + type + '/' + season + '/' + month + '/';
 
     fetch(url3, {method: 'get'})
 
@@ -124,7 +152,7 @@ function on_players_button(){
     })
     
     type = 'BPG'
-    var url4 = get_API_base_URL() + '/players/' + type + '/' + season + '/';
+    var url4 = get_API_base_URL() + '/players/' + type + '/' + season + '/' + month + '/';
 
     fetch(url4, {method: 'get'})
 
@@ -136,7 +164,7 @@ function on_players_button(){
     })
     
     type = 'RPG'
-    var url5 = get_API_base_URL() + '/players/' + type + '/' + season + '/';
+    var url5 = get_API_base_URL() + '/players/' + type + '/' + season + '/' + month + '/';
 
     fetch(url5, {method: 'get'})
 
@@ -149,7 +177,7 @@ function on_players_button(){
 
     
     type = 'TOV'
-    var url6 = get_API_base_URL() + '/players/' + type + '/' + season + '/';
+    var url6 = get_API_base_URL() + '/players/' + type + '/' + season + '/' + month + '/';
 
     fetch(url6, {method: 'get'})
 
@@ -203,7 +231,7 @@ function on_teams_button(){
 
     type = 'PPG';
 
-    var url = get_API_base_URL() + '/teams/' + type + '/' + season + '/';
+    var url = get_API_base_URL() + '/teams/' + type + '/' + season + '/' + month + '/';
 
     fetch(url, {method: 'get'})
 
@@ -215,7 +243,7 @@ function on_teams_button(){
     })
 
     type = 'APG'
-    var url2 = get_API_base_URL() + '/teams/' + type + '/' + season + '/';
+    var url2 = get_API_base_URL() + '/teams/' + type + '/' + season + '/' + month + '/';
 
     fetch(url2, {method: 'get'})
 
@@ -227,7 +255,7 @@ function on_teams_button(){
     })
     
     type = 'SPG'
-    var url3 = get_API_base_URL() + '/teams/' + type + '/' + season + '/';
+    var url3 = get_API_base_URL() + '/teams/' + type + '/' + season + '/' + month + '/';
 
     fetch(url3, {method: 'get'})
 
@@ -239,7 +267,7 @@ function on_teams_button(){
     })
     
     type = 'BPG'
-    var url4 = get_API_base_URL() + '/teams/' + type + '/' + season + '/';
+    var url4 = get_API_base_URL() + '/teams/' + type + '/' + season + '/' + month + '/';
 
     fetch(url4, {method: 'get'})
 
@@ -251,7 +279,7 @@ function on_teams_button(){
     })
     
     type = 'RPG'
-    var url5 = get_API_base_URL() + '/teams/' + type + '/' + season + '/';
+    var url5 = get_API_base_URL() + '/teams/' + type + '/' + season + '/' + month + '/';
 
     fetch(url5, {method: 'get'})
 
@@ -264,7 +292,7 @@ function on_teams_button(){
 
     
     type = 'TOV'
-    var url6 = get_API_base_URL() + '/teams/' + type + '/' + season + '/';
+    var url6 = get_API_base_URL() + '/teams/' + type + '/' + season + '/' + month + '/';
 
     fetch(url6, {method: 'get'})
 
@@ -282,9 +310,9 @@ function on_games_button(){
     var filter = document.getElementById('filter-month');
     var content = document.getElementById('content');
 
-    selected = 'game'
+    selected = 'games'
 
-    var url = get_API_base_URL() + '/games/' + season + '/';
+    var url = get_API_base_URL() + '/games/' + season + '/' + month + '/';
 
     fetch(url, {method: 'get'})
 
@@ -333,19 +361,21 @@ function search_player() {
 } 
 
 function on_selected_team(team){
+    selected_team = team
+    selected = 'individual_team'
 
     var content = document.getElementById('content');
 
     list_body = '<div class = "team-page-header">' + team + '</div>';
 
-    var url_roster = get_API_base_URL() + '/' + team + '/' + season + '/';
-    var url_ppg = get_API_base_URL() + '/teams/PPG/' + season + '/?team_name=' + team;
-    var url_apg = get_API_base_URL() + '/teams/APG/' + season + '/?team_name=' + team;
-    var url_rpg = get_API_base_URL() + '/teams/RPG/' + season + '/?team_name=' + team;
-    var url_bpg = get_API_base_URL() + '/teams/BPG/' + season + '/?team_name=' + team;
-    var url_spg = get_API_base_URL() + '/teams/SPG/' + season + '/?team_name=' + team;
-    var url_tov = get_API_base_URL() + '/teams/TOV/' + season + '/?team_name=' + team;
-    var url_schedule = get_API_base_URL() + '/games/' + season + '/?team_neame=' + team;
+    var url_roster = get_API_base_URL() + '/' + team + '/' + season + '/' + month + '/';
+    var url_ppg = get_API_base_URL() + '/teams/PPG/' + season + '/' + month +  '/?team_name=' + team + '/' ;
+    var url_apg = get_API_base_URL() + '/teams/APG/' + season + '/' + month + '/?team_name=' + team + '/';
+    var url_rpg = get_API_base_URL() + '/teams/RPG/' + season + '/' + month + '/?team_name=' + team + '/';
+    var url_bpg = get_API_base_URL() + '/teams/BPG/' + season + '/' + month + '/?team_name=' + team + '/';
+    var url_spg = get_API_base_URL() + '/teams/SPG/' + season + '/' + month + '/?team_name=' + team + '/';
+    var url_tov = get_API_base_URL() + '/teams/TOV/' + season + '/' + month + '/?team_name=' + team + '/';
+    var url_schedule = get_API_base_URL() + '/games/' + season + '/' + month + '/?team_name=' + team + '/';
 
     fetch(url_roster, {method: 'get'})
 
