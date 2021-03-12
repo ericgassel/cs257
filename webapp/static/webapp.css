@@ -26,6 +26,10 @@ body {
     align-self:baseline;
 }
 
+#title:hover, #logo:hover, .filter:hover, button:hover{
+    cursor: pointer;
+}
+
 #logo{
     height:85%;
     margin: .5%;
@@ -45,11 +49,12 @@ body {
     
 }
 
-.horizontal-navbar {
+#horizontal-navbar {
     display: flex;
     justify-content: center;
     height: 6%;
     width: 85%;
+    background-color: #DDDDDD;
     
 }
 
@@ -78,7 +83,6 @@ body {
     border-bottom: 4px solid red;
 }
 
-
 #content {
     display: flex;
     flex-wrap: wrap;
@@ -92,8 +96,12 @@ body {
 .mini-header {
     height: 6%;
     width: 48%;
-    border-bottom: 2px solid silver;
-    text-align: center;
+    border-bottom: 2px solid #dddddd;
+    text-align:center;
+    text-shadow: red;
+    font-weight: bold;
+    background-color: whitesmoke;
+    justify-content: center;
 }
 
 .stat-content{
@@ -103,14 +111,21 @@ body {
     flex-direction: column;
 }
 
-.top-list{
-    display: flex;
-    border-bottom: 1.5px solid #DDDDDD;
-    justify-content: flex-start;
-    height: 30%;
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
-
-.top-list:nth-child(2n-1){
+  
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+td:nth-child(even){
+    text-align: right;
+}
+tr:nth-child(even) {
     background-color: whitesmoke;
 }
 
@@ -167,11 +182,43 @@ body {
 }
 
 
-.filter {
+#filter-team, .filter-month {
     display: flex;
-    height: 6%;
+    height: 4%;
+    width: 40%;
+    margin: .5%;
+    margin-left: 16%;
+}
+
+.team-page-header{
+    font-size:20px;
+    font-weight:bold;
+    align-self:baseline;
+    width: 100%;
+    height: 5%;
+    border-bottom: 2px solid #DDDDDD;
+}
+
+.team-page{
+    display: flex;
     width: 85%;
-    margin-bottom: 2%;
+}
+
+.roster{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.schedule{
+    display:flex;
+    flex-direction: column;
+    height:100%;
+    width: 65%;
+}
+
+.team-stats{
+    width: 10%;
 }
 
 

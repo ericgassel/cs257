@@ -11,9 +11,9 @@
 <body>
     <div class = "page">
         <div id = "header">
-            <img id="logo" src="./static/nbalogo.jpg" alt="NBA Logo"/>
+            <img id="logo" src="./static/nbalogo.jpg" alt="NBA Logo" onclick="on_players_button()"/>
 
-            <a id="title">NBA Stat Leaders</b></a>
+            <a id="title" onclick="on_players_button()">NBA Stat Leaders</b></a>
 
             <a>
                 <form id = "search_bar">
@@ -24,12 +24,11 @@
         
         </div>
         
-   
 
         <div id = "team_scroll_bar">
         </div>
 
-        <div class = "horizontal-navbar">
+        <div id = "horizontal-navbar">
             
             <button id="players_button" class="horz-button">Players</button>
             <button id="teams_button" class="horz-button">Teams</button>
@@ -37,70 +36,30 @@
         
         </div>
 
+        <div id = "filter-team">
+            <select id="season">
+                    <option value="2020_2021">2020-2021</option>
+                    <option value="2019_2020" selected>2019-2020</option>
+                    <option value="2018_2019">2018-2019</option>
+                    <option value="2017_2018">2017-2018</option>
+                    <option value="2016_2017">2016-2017</option>
+                    <option value="2015_2016">2015-2016</option>
+                    <option value="2014_2015">2014-2015</option>
+                    <option value="2013_2014">2013-2014</option>
+                    <option value="2012_2013">2012-2013</option>
+                    <option value="2011_2012">2011-2012</option>
+                    <option value="2010_2011">2010-2011</option>
+                    <option value="2009_2010">2009-2010</option>
+
+            </select> 
+            <button id= "submit_button" onClick="get_selected_value('season');">Update Season</button>
+        </div>
+        <div id ="filter-month">
+
+        </div>
+
         <div id = "content">
-            <div class = "filter">
-                <select id="season">
-                        <option value="2020_2021">2020-2021</option>
-                        <option value="2019_2020" selected>2019-2020</option>
-                        <option value="2018_2019">2018-2019</option>
-                        <option value="2017_2018">2017-2018</option>
-                        <option value="2016_2017">2016-2017</option>
-                        <option value="2015_2016">2015-2016</option>
-                        <option value="2014_2015">2014-2015</option>
-                        <option value="2013_2014">2013-2014</option>
-                        <option value="2012_2013">2012-2013</option>
-                        <option value="2011_2012">2011-2012</option>
-                        <option value="2010_2011">2010-2011</option>
-                        <option value="2009_2010">2009-2010</option>
 
-                </select> 
-                <button id= "submit_button" onClick="get_selected_value('season');">Update Season</button>
-            </div>
-             
-
-            
-            <div class="mini-header">
-                Points Per Game
-            </div>
-            <div class="mini-header">
-                Assists Per Game
-            </div>
-            <div class="stat-content">
-                <a id = "ppg-list">
-                </a>
-            </div>
-            <div class="stat-content">
-                <a id = "ast-list">
-                </a>
-            </div>
-            <div class="mini-header">
-                Rebounds Per Game
-            </div>
-            <div class="mini-header">
-                Blocks Per Game
-            </div>
-            <div class="stat-content">
-                <a id = "reb-list">
-                </a>
-            </div>
-            <div class="stat-content">
-                <a id = "blk-list">
-                </a>
-            </div>
-            <div class="mini-header">
-                Steals Per Game
-            </div>
-            <div class="mini-header">
-                Turnovers Per Game
-            </div>
-            <div class="stat-content">
-                <a id = "stl-list">
-                </a>
-            </div>
-            <div class="stat-content">
-                <a id = "tov-list">
-                </a>
-            </div>
         </div>
     </div>
 </html>

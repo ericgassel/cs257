@@ -139,6 +139,8 @@ def get_team_per_game(per_game, season):
         print (e)
         exit()
 
+    team_request = flask.request.args.get('team_name')
+
 
     count_list = {}
     for row in cursor_count:
@@ -153,6 +155,10 @@ def get_team_per_game(per_game, season):
         count = count_list[team]
         count = count['count']
         per_game = round(float(sum_stat/count),1)
+        if team_request != None:
+            if team == team_request:
+                per_game_list.append({'name':team,'per_game':per_game})
+            continue
         per_game_list.append({'name':team,'per_game':per_game})
         
         
@@ -164,41 +170,27 @@ def get_team_per_game(per_game, season):
     
     return json.dumps(sorted_pg)
  
-@api.route('/teams/<team>/<per_game>/<season>', strict_slashes=False)
-def return_team_leaders_in_statistic(team, per_game, season):
-    game_stat = per_game_convert(per_game)
-    query = f'''SELECT player.player, CAST(SUM(player_game.{game_stat}) AS FLOAT)/CAST(COUNT(player_game.{game_stat}) AS FLOAT) as PG,
-        COUNT(player_game.MP) AS GP
-        FROM game, player, player_game, team
-        WHERE player_game.MP > 0
-        AND player.id=player_game.player_id
-        AND game.id=player_game.game_id
-        AND game.season = %s
-        AND team.team = %s
-        AND game.team_id = team.id
-        GROUP BY player.player
-        ORDER BY PG DESC
-        LIMIT 5
+@api.route('/<team>/<season>', strict_slashes=False)
+def return_team_leaders_in_statistic(team, season):
+    query_roster = f'''SELECT DISTINCT player.player FROM player, team, player_game, game
+                WHERE player.id = player_game.player_id
+                AND team.id = player_game.team_id
+                AND team.team LIKE %s
+                AND game.season LIKE %s
         '''
+    
     connection = establish_database_connection()
     cursor = connection.cursor()
     try:
-        cursor.execute(query,(season,))
+        cursor.execute(query_roster,(team,season,))
     except Exception as e:
         print (e)
         exit()
-
-    player_request = flask.request.args.get('player_name')
     
     per_game_list = []
     for row in cursor:
         player=row[0]
-        per_game=round(row[1],1)
-        if player_request != None:
-            if player == player_request:
-                per_game_list.append({'name':player,'per_game':per_game})
-            continue
-        per_game_list.append({'name':player,'per_game':per_game})
+        per_game_list.append({'name':player})
     cursor.close()
     connection.close()
     return json.dumps(per_game_list)
@@ -231,6 +223,8 @@ def get_games_list(season):
         print (e)
         exit()
 
+    team_request = flask.request.args.get('team_name')
+
     teams_dict = {}
     for row in cursor_team:
         ID = row[0]
@@ -247,6 +241,10 @@ def get_games_list(season):
         month = row[4]
         day = row[5]
         year = row[6]
+        if team_request != None:
+            if team_request == home_team or team_request == away_team:
+                games_list.append({'home_team':home_team,'home_score':home_score,'away_team':away_team,'away_score':away_score,'month':month,'day':day,'year':year})
+            continue
         games_list.append({'home_team':home_team,'home_score':home_score,'away_team':away_team,'away_score':away_score,'month':month,'day':day,'year':year})
 
     return json.dumps(games_list)
